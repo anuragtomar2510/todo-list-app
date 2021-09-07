@@ -1,10 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import TodoForm from './TodoForm'
 import Todo from './Todo'
 
 const TodoList = () => {
 
-    const [todos, setTodos] = useState([])
+     const [todos, setTodos] = useState( JSON.parse(localStorage.getItem("todo-app")) || [])
+
+
+    useEffect(() => {
+
+        localStorage.setItem("todo-app", JSON.stringify(todos))
+
+    }, [todos])
+    
 
     const addTodo = todo => {
 
